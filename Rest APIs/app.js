@@ -39,8 +39,7 @@ app.get("/posts/new", (req, res) => {
 app.post("/posts", (req, res) => {
    let { username, title, content } = req.body;
     posts.push({ username, title, content });
-    
-    res.send("Post received");
+    res.redirect("/posts");
 });
 
 

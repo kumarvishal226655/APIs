@@ -36,6 +36,13 @@ app.get("/posts", (req, res) => {
 app.get("/posts/new", (req, res) => {
   res.render("new.ejs");
 });
+app.post("/posts", (req, res) => {
+   let { username, title, content } = req.body;
+    posts.push({ username, title, content });
+    
+    res.send("Post received");
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

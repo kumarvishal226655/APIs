@@ -12,17 +12,17 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
 let posts = [
-  {
+  { id: "1a",
     username: "john_doe",
     title: "First Post",
     content: "This is my first post!",
   },
-  {
+  { id: "2b",
     username: "jane_smith",
     title: "Hello World",
     content: "Hello everyone, this is Jane.",
   },
-  {
+  { id: "3c",
     username: "alice_wonder",
     title: "Adventures",
     content: "I love adventures and exploring new places.",
@@ -41,6 +41,14 @@ app.post("/posts", (req, res) => {
     posts.push({ username, title, content });
     res.redirect("/posts");
 });
+
+app.get("/posts/:id", (req, res) => {
+  let { id } = req.params;
+  let post = posts.find((p) => p.id === id);
+  res.render("show.ejs", { post });
+});
+
+
 
 
 app.listen(port, () => {

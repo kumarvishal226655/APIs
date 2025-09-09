@@ -6,6 +6,7 @@ const path = require("path");
 const { v4: uuid } = require("uuid");
 
 
+
 app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
@@ -59,18 +60,11 @@ app.patch("/posts/:id", (req, res)=>{
   res.send("patch request is working");
   
 });
-app.get("posts/:id/edit",(req , res)=>{
+app.get("/posts/:id/edit",(req , res)=>{
     let {id} = req.params;
     let post = posts.find((p) => id ===p.id);
     res.render("edit.ejs",{post});
 });
-
-
-
-
-
-
-
 
 
 app.listen(port, () => {

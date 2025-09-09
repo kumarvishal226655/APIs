@@ -8,9 +8,9 @@
 <body>
     <h3> Edit your post</h3>
     <p>Post id: <%= post.id %> </p>
-    <p>post username: @ <%= post.username %></p>
-    <form >
-        <textarea rows="15" cols="30" ><%= post.content %> </textarea>
+    <p>post username: @ <%=post.username%></p>
+    <form method="post" action="/posts/<%=post.id %>?_method=PATCH">
+        <textarea rows="15" cols="30" name="content"><%=post.content%> </textarea>
         <button>sumbit</button>
     </form>
 

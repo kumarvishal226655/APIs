@@ -63,11 +63,16 @@ app.patch("/posts/:id", (req, res)=>{
 });
 app.get("/posts/:id/edit",(req , res)=>{
     let {id} = req.params;
-     let post = posts.find((p) => p.id === (id));
+    let post = posts.find((p) => p.id === (id));
     res.render("edit.ejs",{post});
 });
 
-
+// In your app.js
+app.delete("/posts/:id", (req, res) => {
+    let { id } = req.params;
+    posts = posts.filter((p) => p.id !== id);
+    res.redirect("/posts");  // Redirect to posts list after deletion
+});
 
 
 app.listen(port, () => {

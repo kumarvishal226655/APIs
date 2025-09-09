@@ -17,6 +17,11 @@
       <a href="http://localhost:3000/posts/<%= post.id%>"> show id</a>
 
       <a href="http://localhost:3000/posts/<%= post.id%>/edit"> Edit</a>
+     <!-- In your show.ejs or edit.ejs -->
+<form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+    <button type="submit">Delete Post</button>
+</form>
+      
     </div>
     <% } %>
     <a href="/posts/new">Create New Post</a>

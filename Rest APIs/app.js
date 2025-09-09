@@ -4,10 +4,11 @@ const app = express();
 const port = 3000;
 const path = require("path");
 const { v4: uuid } = require("uuid");
-
+const methodoverride = require("method-override");
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodoverride("_method"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -57,14 +58,16 @@ app.patch("/posts/:id", (req, res)=>{
   let newcontent = req.body.content;
   let post = posts.find((p)=> id ===p.id);
   post.content = newcontent;
-  res.send("patch request is working");
+  res.redirect("/posts");
   
 });
 app.get("/posts/:id/edit",(req , res)=>{
     let {id} = req.params;
-    let post = posts.find((p) => id ===p.id);
+     let post = posts.find((p) => p.id === (id));
     res.render("edit.ejs",{post});
 });
+
+
 
 
 app.listen(port, () => {
